@@ -1,9 +1,4 @@
 
----
-
-## 🔵 Retail Lakehouse Pipeline README
-
-```markdown
 # Retail Lakehouse Pipeline
 
 ## Overview
