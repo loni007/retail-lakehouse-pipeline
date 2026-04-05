@@ -1,0 +1,65 @@
+# Retail Lakehouse Pipeline
+
+A portfolio-grade **data engineering project** that ingests raw retail files, validates them, transforms them into analytics-ready tables, and exposes KPIs through a dashboard.
+
+## What this proves
+- Python ETL design
+- SQL modeling with DuckDB
+- Data quality checks
+- Incremental pipeline thinking
+- Analytics engineering mindset
+- Clean project structure recruiters can understand quickly
+
+## Stack
+- Python 3.11+
+- DuckDB
+- Pandas
+- Streamlit
+- Pytest
+
+## Architecture
+raw CSV -> ingestion -> validation -> staging tables -> mart tables -> dashboard
+
+## Main features
+- Loads orders, customers, and products from raw CSV files
+- Runs validation checks for nulls, duplicates, and bad prices
+- Builds warehouse-style models:
+  - `stg_orders`
+  - `stg_customers`
+  - `stg_products`
+  - `fct_sales`
+  - `dim_customers`
+  - `dim_products`
+  - `mart_daily_revenue`
+- Produces KPI metrics and trend charts in Streamlit
+- Stores everything in a local DuckDB database for easy demoing
+
+## Quick start
+```bash
+python -m venv .venv
+source .venv/bin/activate   # Windows: .venv\Scriptsctivate
+pip install -r requirements.txt
+python run_pipeline.py
+streamlit run dashboard.py
+```
+
+## Suggested talking points in interviews
+- Why you used a warehouse-style layered model
+- How you would move this from DuckDB to PostgreSQL / BigQuery / Snowflake
+- How you would schedule it with Airflow or Dagster
+- How you would handle late-arriving data and schema drift
+
+## Project structure
+```text
+retail-lakehouse-pipeline/
+  data/raw/
+  sql/
+  src/
+    retail_pipeline/
+  tests/
+  run_pipeline.py
+  dashboard.py
+```
+
+## Resume bullet you can use
+Built a Python + DuckDB retail data pipeline that ingested raw operational CSVs, validated data quality, modeled warehouse-style fact and dimension tables, and surfaced business KPIs through a Streamlit dashboard.

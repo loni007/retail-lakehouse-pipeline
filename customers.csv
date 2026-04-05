@@ -1,0 +1,24 @@
+import pandas as pd
+
+
+def validate_non_negative(df: pd.DataFrame, columns: list[str]) -> list[str]:
+    errors = []
+    for col in columns:
+        bad = (df[col] < 0).sum()
+        if bad:
+            errors.append(f"{col} contains {bad} negative values")
+    return errors
+
+
+def validate_not_null(df: pd.DataFrame, columns: list[str]) -> list[str]:
+    errors = []
+    for col in columns:
+        bad = df[col].isna().sum()
+        if bad:
+            errors.append(f"{col} contains {bad} null values")
+    return errors
+
+
+def validate_unique(df: pd.DataFrame, columns: list[str]) -> list[str]:
+    duplicates = df.duplicated(subset=columns).sum()
+    return [f"duplicate rows found for {columns}: {duplicates}"] if duplicates else []
